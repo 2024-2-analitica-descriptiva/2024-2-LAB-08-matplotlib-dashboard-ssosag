@@ -129,11 +129,8 @@ def pregunta_01():
         plt.savefig("docs/weight_distribution.png")
 
     def createOutputDirectory(outputPath):
-        if os.path.exists(outputPath):
-            for file in glob.glob(f"{outputPath}/*"):
-                os.remove(file)
-            os.rmdir(outputPath)
-        os.makedirs(outputPath)
+        if not os.path.exists(outputPath):
+            os.makedirs(outputPath)
 
     df = loadData()
     createOutputDirectory("docs")
@@ -141,6 +138,3 @@ def pregunta_01():
     createVisualForModeOfShipment(df)
     createVisualForAverageCustomerRating(df)
     creataVisualForWeightDistribution(df)
-
-
-pregunta_01()
